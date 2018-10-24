@@ -9,6 +9,7 @@ True Object-Oriented Telegram Framework with same design as in https://www.takes
 [![Build Status](https://travis-ci.org/g4s8/teletakes.svg?branch=master)](https://travis-ci.org/g4s8/teletakes)
 [![Build status](https://ci.appveyor.com/api/projects/status/lxpj90a6h5q8mgef?svg=true)](https://ci.appveyor.com/project/g4s8/teletakes)
 
+ [![Download](https://api.bintray.com/packages/g4s8/mvn/com.g4s8.teletakes/images/download.svg) ](https://bintray.com/g4s8/mvn/com.g4s8.teletakes/_latestVersion)
 [![PDD status](http://www.0pdd.com/svg?name=g4s8/teletakes)](http://www.0pdd.com/p?name=g4s8/teletakes)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/g4s8/teletakes/blob/master/LICENSE.txt)
 

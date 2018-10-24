@@ -11,6 +11,7 @@ True Object-Oriented Telegram Framework with same design as in https://www.takes
 
 [![codecov](https://codecov.io/gh/g4s8/teletakes/branch/master/graph/badge.svg)](https://codecov.io/gh/g4s8/teletakes)
  [![Download](https://api.bintray.com/packages/g4s8/mvn/com.g4s8.teletakes/images/download.svg) ](https://bintray.com/g4s8/mvn/com.g4s8.teletakes/_latestVersion)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea632ecb4e5540c49145376715a1406b)](https://www.codacy.com/app/g4s8/teletakes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=g4s8/teletakes&amp;utm_campaign=Badge_Grade)
 [![PDD status](http://www.0pdd.com/svg?name=g4s8/teletakes)](http://www.0pdd.com/p?name=g4s8/teletakes)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/g4s8/teletakes/blob/master/LICENSE.txt)
 

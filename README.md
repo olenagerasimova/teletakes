@@ -15,10 +15,24 @@ True Object-Oriented Telegram Framework with same design as in https://www.takes
 [![PDD status](http://www.0pdd.com/svg?name=g4s8/teletakes)](http://www.0pdd.com/p?name=g4s8/teletakes)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/g4s8/teletakes/blob/master/LICENSE.txt)
 
-## Examples
+## Install
+Add `teletakes` as maven dependency and `telegrambots` dependency:
+```xml
+<dependency>
+   <groupId>com.g4s8</groupId>
+   <artifactId>teletakes</artifactId>
+   <version>0.1</version> <!-- put latest version here -->
+</dependency>
+<dependency>
+   <groupId>org.telegram</groupId>
+   <artifactId>telegrambots</artifactId>
+   <version>${telegram.version}</version>
+</dependency>
+```
 
-### Quick start
-This example will answer for "hello" message with "Hello %username%" message:
+## Quick start
+To start Telegram bot you need to instanciate `BotSimple` and register it
+as a bot via `telegrambots` library:
 ```java
  new TelegramBotsApi().registerBot(
     new BotSimple(
@@ -36,8 +50,10 @@ This example will answer for "hello" message with "Hello %username%" message:
  );
  ```
  
- ### Handle commands
- This take answers for `/version` command:
+## Examples
+ 
+### Handle commands
+This take answers for `/version` command:
  ```java
  new TkFork(
     new FkCommand(

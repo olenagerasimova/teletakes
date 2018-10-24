@@ -1,6 +1,16 @@
 # Teletakes
 True Object-Oriented Telegram Framework with same design as in https://www.takes.org/
 
+
+[![EO principles respected here](http://www.elegantobjects.org/badge.svg)](http://www.elegantobjects.org)
+[![DevOps By Rultor.com](http://www.rultor.com/b/zerocracy/farm)](http://www.rultor.com/p/zerocracy/farm)
+
+[![CircleCI](https://circleci.com/gh/g4s8/teletakes.svg?style=svg)](https://circleci.com/gh/g4s8/teletakes)
+[![Build Status](https://travis-ci.org/g4s8/teletakes.svg?branch=master)](https://travis-ci.org/g4s8/teletakes)
+[![Build status](https://ci.appveyor.com/api/projects/status/lxpj90a6h5q8mgef?svg=true)](https://ci.appveyor.com/project/g4s8/teletakes)
+
+[![PDD status](http://www.0pdd.com/svg?name=g4s8/teletakes)](http://www.0pdd.com/p?name=g4s8/teletakes)
+
 ## Examples
 
 ### Quick start

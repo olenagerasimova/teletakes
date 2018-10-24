@@ -12,5 +12,5 @@ jdk:
   - oraclejdk9
   - openjdk8
 after_success:
-  - mvn verify --quiet --batch-mode -Pcodecov -Pqulice
+  - mvn verify --quiet --batch-mode -Pcoverage -Pqulice
   - "bash <(curl -s https://codecov.io/bash)"

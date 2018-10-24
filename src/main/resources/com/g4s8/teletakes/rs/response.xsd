@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="SNAPSHOT" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+  <xs:complexType name="keyboard-reply">
+    <xs:sequence>
+      <xs:element name="row" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="button" maxOccurs="unbounded" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="keyboard-inline">
+    <xs:sequence>
+      <xs:element name="row" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="button" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="callback" type="xs:string"/>
+                    <xs:attribute name="url" type="xs:string"/>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="message-text">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="kind" default="plain">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="plain"/>
+              <xs:enumeration value="markdown"/>
+              <xs:enumeration value="html"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="message">
+    <xs:all>
+      <xs:element name="text" type="message-text"/>
+      <xs:element name="keyboard" minOccurs="0">
+        <xs:complexType>
+          <xs:choice>
+            <xs:element name="reply" type="keyboard-reply"/>
+            <xs:element name="inline" type="keyboard-inline"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="delete">
+    <xs:choice>
+      <xs:element name="message" type="xs:integer"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="extras">
+    <xs:all>
+      <xs:element name="item">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="key" type="xs:string"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:element name="response">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="message" type="message" minOccurs="0"/>
+        <xs:element name="delete" type="delete" minOccurs="0"/>
+        <xs:element name="extras" type="extras" minOccurs="0"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

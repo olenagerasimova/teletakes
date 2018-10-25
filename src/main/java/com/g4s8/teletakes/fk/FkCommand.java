@@ -27,6 +27,7 @@ import com.g4s8.teletakes.rs.TmResponse;
 import com.g4s8.teletakes.tk.TmTake;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import org.telegram.telegrambots.api.objects.Update;
 
 /**
@@ -42,30 +43,40 @@ public final class FkCommand implements TmFork {
     /**
      * Take.
      */
-    private final TmTake tke;
+    private final TmTake take;
 
     /**
      * Command.
      */
-    private final String cmd;
+    private final Pattern pattern;
 
     /**
-     * Ctor.
+     * Fork on command.
      *
-     * @param cmd Command to match
-     * @param tke Take
+     * @param command Command regex strings
+     * @param take Take
      */
-    public FkCommand(final String cmd, final TmTake tke) {
-        this.tke = tke;
-        this.cmd = cmd;
+    public FkCommand(final String command, final TmTake take) {
+        this(Pattern.compile(command), take);
+    }
+
+    /**
+     * Fork on command pattern.
+     *
+     * @param pattern Command pattern regex
+     * @param take Take
+     */
+    public FkCommand(final Pattern pattern, final TmTake take) {
+        this.take = take;
+        this.pattern = pattern;
     }
 
     @Override
     public Optional<TmResponse> route(final Update update) throws IOException {
         final Optional<TmResponse> opt;
         if (update.hasMessage() && update.getMessage().isCommand()
-            && update.getMessage().getText().equals(this.cmd)) {
-            opt = Optional.of(this.tke.act(update));
+            && this.pattern.matcher(update.getMessage().getText()).matches()) {
+            opt = Optional.of(this.take.act(update));
         } else {
             opt = Optional.empty();
         }

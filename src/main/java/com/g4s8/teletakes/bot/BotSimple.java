@@ -30,11 +30,14 @@ import com.jcabi.xml.XML;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.cactoos.func.UncheckedProc;
 import org.cactoos.list.Mapped;
+import org.cactoos.map.MapEntry;
+import org.cactoos.map.MapOf;
 import org.cactoos.scalar.Folded;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.updatingmessages.DeleteMessage;
@@ -137,6 +140,16 @@ public final class BotSimple extends TelegramLongPollingBot {
     private static final class Act implements Runnable {
 
         /**
+         * Message kind to API value map.
+         */
+        private static final Map<String, Optional<String>> MESSAGE_KIND_MAP =
+            new MapOf<>(
+                new MapEntry<>("plain", Optional.empty()),
+                new MapEntry<>("markdown", Optional.of("Markdown")),
+                new MapEntry<>("html", Optional.of("html"))
+            );
+
+        /**
          * Take.
          */
         private final TmTake take;
@@ -203,8 +216,7 @@ public final class BotSimple extends TelegramLongPollingBot {
                     )
                 );
             smart.optXpath("text/@kind")
-                // @checkstyle AvoidInlineConditionalsCheck (1 line)
-                .map(kind -> "markdown".equals(kind) ? "Markdown" : kind)
+                .flatMap(BotSimple.Act.MESSAGE_KIND_MAP::get)
                 .ifPresent(message::setParseMode);
             final Optional<XML> xkb = smart.optNode("keyboard");
             xkb.flatMap(xml -> new XmlSmart(xml).optNode("reply"))

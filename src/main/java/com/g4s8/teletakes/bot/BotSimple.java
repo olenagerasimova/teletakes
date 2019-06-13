@@ -48,6 +48,7 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboar
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 /**
  * Simple bot.
@@ -56,7 +57,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
  * @todo #1:30min Refactor this class and split into few smaller,
  *  also remove all checkstyle and PMD suppressions.
  */
-public final class BotSimple extends TelegramLongPollingBot {
+public final class BotSimple extends TelegramLongPollingBot implements Bot {
 
     /**
      * Take.
@@ -92,6 +93,15 @@ public final class BotSimple extends TelegramLongPollingBot {
         this.name = name;
         this.token = token;
         this.threads = Executors.newCachedThreadPool();
+    }
+
+    @Override
+    public void send(final SendMessage msg) throws IOException {
+        try {
+            this.execute(msg);
+        } catch (final TelegramApiException ex) {
+            throw new IOException("Failed to send message", ex);
+        }
     }
 
     @Override
